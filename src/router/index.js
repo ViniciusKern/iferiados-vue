@@ -1,28 +1,38 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
+import Holidays from "../views/Holidays.vue";
 
 Vue.use(VueRouter);
+
+export const RouteHome = "home";
+export const RouteStates = "states";
+export const RouteCities = "cities";
 
 const routes = [
   {
     path: "/",
-    name: "Home",
-    component: Home
+    name: RouteHome,
+    component: Holidays
   },
   {
-    path: "/about",
-    name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
+    path: "/estados",
+    name: RouteStates,
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue")
+      import(/* webpackChunkName: "states" */ "../views/States.vue")
+  },
+  {
+    path: "/cidades",
+    name: RouteCities,
+    component: () =>
+      import(/* webpackChunkName: "cities" */ "../views/Cities.vue")
   }
 ];
 
 const router = new VueRouter({
-  routes
+  routes,
+  scrollBehavior() {
+    return { x: 0, y: 0 };
+  }
 });
 
 export default router;
