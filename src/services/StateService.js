@@ -6,11 +6,9 @@ export default class StateService {
 
   states() {
     if (this._cache.states) {
-      console.log("cache");
       return new Promise(resolve => resolve(this._cache.states));
     }
 
-    console.log("api");
     return this._resource.query().then(
       res => res.json().then(json => json.states),
       err => {
